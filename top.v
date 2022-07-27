@@ -17,19 +17,6 @@ end
 
 endmodule
 
-module complement();
-    
-
-/* Flip bits and add 1*/
-
-
-
-
-
-
-
-endmodule
-
 
 module serialAdder ();
 
@@ -39,11 +26,6 @@ endmodule
 
 
 module top_tb();
-    
-endmodule
-
-
-module complement_tb();
     
 endmodule
 

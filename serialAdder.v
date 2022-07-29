@@ -1,20 +1,32 @@
 `include "bitAdder.v"
 
-module serialAdder(a, b, clk, sum);
+module serialAdder(a, b, clk, sum, getNewSum);
 
-    input [7:0] a;
-    input [7:0] b;
-    input clk;
+    input [7:0] a, b;
+    input clk, getNewSum;
     output [7:0] sum;
-    reg A, B, carry, sum;
+    reg a0, b0;
+    reg [7:0] A, B;
+    wire carry, bitSum;
 
-    bitAdder uut(a, b, carry, sum);
+    bitAdder uut(.a(a0), .b(b0), .carry(carry), .sum(bitSum));
 
     always @(posedge clk) begin
-        A = a[0];
-        B = b[0];
-        a = a <<< 1;
-        b = b <<< 1;
+
+        a0 = A[0];
+        b0 = B[0];
+        A[7] = bitSum;
+
+        A = A >> 1;
+        B = B >> 1;
+
+    end
+
+    always @(getNewSum) begin
+
+        A = a;
+        B = b;
+
     end
 
     assign sum = A;

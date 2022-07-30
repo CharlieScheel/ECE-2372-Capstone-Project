@@ -1,4 +1,5 @@
 `include "serialAdder.v"
+`timescale 1ns / 1ns
 
 module serialAdder_tb();
 
@@ -7,34 +8,32 @@ module serialAdder_tb();
     wire [7:0] sum;
 
     always
-        #5 clk = ~clk;
+        #3 clk = ~clk;
 
-    serialAdder uut(a, b, clk, sum, getNewSum);
+    serialAdder uut(a, b, clk, sum);
 
     initial begin
-
+        
         clk = 0;
-        getNewSum = 1;
+
         a = 8'd0;
         b = 8'd0;
-        getNewSum = 0;
-        #80;
-        $display("%8b + %8b = %8b", a, b, sum);
+        #48;
+        $display("%8b + %8b = %8b", a, b, sum); 
 
-        clk = 0;
-        getNewSum = 1;
         a = 8'd1;
         b = 8'd2;
-        getNewSum = 0;
-        #80;
+        #48;
         $display("%8b + %8b = %8b", a, b, sum);
 
-        clk = 0;
-        getNewSum = 1;
         a = 8'd31;
         b = 8'd1;
-        getNewSum = 0;
-        #80;
+        #48;
+        $display("%8b + %8b = %8b", a, b, sum);
+
+        a = 8'd37;
+        b = 8'd21;
+        #48;
         $display("%8b + %8b = %8b", a, b, sum);
 
         $finish;

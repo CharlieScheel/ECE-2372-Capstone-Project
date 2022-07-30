@@ -1,34 +1,17 @@
 `include "bitAdder.v"
+`include "shift.v"
 
-module serialAdder(a, b, clk, sum, getNewSum);
+module serialAdder(a, b, clk, sum);
 
     input [7:0] a, b;
-    input clk, getNewSum;
+    input clk;
     output [7:0] sum;
-    reg a0, b0;
-    reg [7:0] A, B;
-    wire carry, bitSum;
+    wire carryOut, bitSum;
 
-    bitAdder uut(.a(a0), .b(b0), .carry(carry), .sum(bitSum));
+    bitAdder u0(.a(a[0]), .b(b[0]), .carryIn(carryOut), .carryOut(carryOut), .sum(bitSum));
+    shift shiftA(.in(a), .add(bitsum), .out(a), .clk(clk));
+    shift shiftB(.in(b), .add(b[0]), .out(b), .clk(clk));
 
-    always @(posedge clk) begin
-
-        a0 = A[0];
-        b0 = B[0];
-        A[7] = bitSum;
-
-        A = A >> 1;
-        B = B >> 1;
-
-    end
-
-    always @(getNewSum) begin
-
-        A = a;
-        B = b;
-
-    end
-
-    assign sum = A;
+    assign sum = a;
 
 endmodule

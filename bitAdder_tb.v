@@ -3,25 +3,30 @@
 
 module bitAdder_tb();
     
-    reg a, b, carryIn;
+    reg a, b, carryIn, clk;
     wire sum, carryOut;
 
-    bitAdder u0(a, b, carryIn, carryOut, sum);
+    always
+        #3 clk = ~clk;
+
+    bitAdder uut(a, b, carryIn, carryOut, sum, clk);
 
     initial begin
 
         /* initialize inputs */
-        a <= 0; 
-        b <= 0;
-        carryIn <= 0;
-
-        $monitor("%b + %b + %b = %b (carry = %b)", a, b, carryIn, sum, carryOut);
+        a = 0; 
+        b = 0;
+        carryIn = 0;
+        clk = 0;
 
         /* test possible combinations */
         for(integer i=0; i<8; i=i+1) begin  
             {a, b, carryIn} = i;
-            #10;
+            #6;
+            $display("%b + %b + %b = %b (carry = %b)", a, b, carryIn, sum, carryOut);
         end
+
+        $finish;
     end
 
 endmodule

@@ -1,12 +1,10 @@
-module shift(in, add, out, clk);
+module shift(in, add, out);
 
 input [7:0] in;
-input add, clk;
-output reg [7:0] out;
+input add;
+output [7:0] out;
 
-always @(posedge clk) begin
-    out = in >> 1;
-    out[7] = add;
-end
+assign out[6:0] = in >> 1;
+assign out[7] = add;
 
 endmodule

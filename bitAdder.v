@@ -1,13 +1,12 @@
-module bitAdder (a, b, carryIn, carryOut, sum, clk);
+module bitAdder (a, b, carryIn, carryOut, sum);
 
 // pg. 653 on the txtbook, pg. 50 in verilog book
 
-input a, b, carryIn, clk;
-output reg sum, carryOut;
+input a, b, carryIn;
+output sum, carryOut;
 
-always @(posedge clk) begin
-    sum = carryIn ^ (a ^ b);
-    carryOut = (carryIn & a) | (carryIn & b) | (a & b);
-end
+assign sum = carryIn ^ (a ^ b);
+assign carryOut = (carryIn & a) | (carryIn & b) | (a & b);
+
   
 endmodule

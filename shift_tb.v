@@ -1,37 +1,34 @@
 `include "shift.v"
-`timescale 1ns / 1ns
 
 module shift_tb();
 
 reg [7:0] in;
-reg add, clk;
+reg add;
 wire [7:0] out;
 
-always
-    #3 clk = ~clk;
-
-shift uut(in, add, out, clk);
+shift uut(in, add, out);
 
 initial begin
 
-    clk = 0;
-
     in = 8'd0;
     add = 0;
-    #6;
+    #5;
     $display("%b -> %b", in, out);
 
     in = 8'd2;
     add = 1;
-    #6;
+    #5;
     $display("%b -> %b", in, out);
 
     in = 8'd63;
     add = 0;
-    #6;
+    #5;
     $display("%b -> %b", in, out);
 
-    $finish;
+    in = 8'd255;
+    add = 1;
+    #5;
+    $display("%b -> %b", in, out);
 
 end
 

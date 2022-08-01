@@ -5,7 +5,6 @@ module serialAdder_tb();
     reg [7:0] a, b;
     reg carry;
     wire [7:0] sum;
-    integer i;
 
     serialAdder uut(a, b, sum, carry);
 

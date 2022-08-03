@@ -3,14 +3,11 @@
 module serialAdder_tb();
 
     reg [7:0] a, b;
-    reg carry;
     wire [7:0] sum;
 
-    serialAdder uut(a, b, sum, carry);
+    serialAdder uut(a, b, sum);
 
     initial begin
-        
-        carry = 0;
 
         a = 8'd0;
         b = 8'd0;

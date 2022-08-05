@@ -3,9 +3,11 @@
 
 module bitAdder_tb();
     
+    /* declare variables */
     reg a, b, carryIn;
     wire sum, carryOut;
 
+    /* testing bitAdder.v */
     bitAdder uut(a, b, carryIn, carryOut, sum);
 
     initial begin
@@ -22,5 +24,5 @@ module bitAdder_tb();
             $display("%b + %b + %b = %b (carry = %b)", a, b, carryIn, sum, carryOut);
         end
     end
-
+    
 endmodule

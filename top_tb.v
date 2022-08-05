@@ -24,6 +24,16 @@ initial begin
     #5;
     $display("%8b - %8b = %8b (zFlag = %d)", a, b, c, zFlag);
 
+    a = 8'd100;
+    b = 8'd45;
+    #5;
+    $display("%8b - %8b = %8b (zFlag = %d)", a, b, c, zFlag);
+
+    a = 8'd127;
+    b = 8'd8;
+    #5;
+    $display("%8b - %8b = %8b (zFlag = %d)", a, b, c, zFlag);
+
 end
 
 endmodule

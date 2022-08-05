@@ -1,10 +1,10 @@
 `include "complement.v"
 `include "serialAdder.v"
 
-module top(a, b, zFlag, c);
+module top(a, b, zFlag, c, nFlag);
 
     input [7:0] a, b;
-    output zFlag;
+    output zFlag, nFlag;
     output [7:0] c;
     wire [7:0] A1to2, A2to3, A3to4, A4to5, A5to6, A6to7, A7to8, B1to2, B2to3, B3to4, B4to5, B5to6, B6to7, B7to8, newB;
     wire C1to2, C2to3, C3to4, C4to5, C5to6, C6to7, C7to8;
@@ -22,5 +22,6 @@ module top(a, b, zFlag, c);
     serialAdder u8(.a(A7to8), .b(B7to8), .sum(c), .carryIn(C7to8), .carryOut(), .bOut()); 
 
     assign zFlag = ~c;
+    assign nFlag = c[7];
     
 endmodule

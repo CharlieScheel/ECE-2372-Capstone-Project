@@ -3,9 +3,11 @@
 
 module complement_tb();
 
+/* declare variables */
 reg [7:0] test;
 wire [7:0] result;
 
+/* testing compliment.v */
 complement uut(.in(test), .out(result));
 
 initial begin
